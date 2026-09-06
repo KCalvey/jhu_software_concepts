@@ -142,3 +142,45 @@ a:hover {
         gap: 15px;
     }
 }
+
+/* Resume sections */
+.resume-section {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.resume-section h2 {
+    color: #2f4f6f;
+    margin-top: 0;
+    border-bottom: 2px solid #dbe5ee;
+    padding-bottom: 10px;
+}
+
+.resume-section h3 {
+    color: #4f6f8f;
+    margin-bottom: 5px;
+}
+
+.resume-section p {
+    line-height: 1.6;
+}
+
+/* Resume button */
+.resume-button {
+    display: inline-block;
+    background-color: #4f6f8f;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 7px;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.resume-button:hover {
+    background-color: #2f4f6f;
+    color: white;
+}

@@ -1,0 +1,144 @@
+/* General page styling */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f9fc;
+    color: #243447;
+}
+
+/* Navigation bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4f6f8f;
+    padding: 18px 8%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-name {
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+/* Navigation hover effect */
+.nav-links a:hover {
+    background-color: #6f89a3;
+}
+
+/* Highlights the current page */
+.nav-links a.active {
+    background-color: #a9bdd0;
+    color: #1f3448;
+}
+
+/* Main content area */
+main {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 30px;
+}
+
+/* Homepage layout */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 70px;
+    background-color: white;
+    padding: 45px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.bio {
+    flex: 1;
+}
+
+.bio h1 {
+    font-size: 44px;
+    margin-bottom: 10px;
+    color: #2f4f6f;
+}
+
+.bio h2 {
+    font-size: 21px;
+    color: #6b7f93;
+    margin-bottom: 28px;
+    font-weight: normal;
+}
+
+.bio p {
+    line-height: 1.7;
+    font-size: 17px;
+    color: #3f4f5f;
+}
+
+/* Profile image */
+.profile-image {
+    flex: 0 0 340px;
+}
+
+.profile-image img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* General page headings */
+.page h1 {
+    font-size: 38px;
+    color: #2f4f6f;
+    margin-bottom: 25px;
+}
+
+/* Project cards */
+.project-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 25px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #8fa9c1;
+}
+
+/* Links */
+a {
+    color: #4f6f8f;
+}
+
+a:hover {
+    color: #2f4f6f;
+}
+
+/* Mobile-friendly layout */
+@media (max-width: 800px) {
+    .hero {
+        flex-direction: column;
+    }
+
+    .profile-image {
+        flex: none;
+        width: 280px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

@@ -184,3 +184,32 @@ a:hover {
     background-color: #2f4f6f;
     color: white;
 }
+/* Contact page */
+.contact-card {
+    background-color: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+}
+
+.contact-card h2 {
+    color: #2f4f6f;
+    margin-top: 0;
+}
+
+.contact-card p {
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.contact-card a {
+    color: #4f6f8f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contact-card a:hover {
+    color: #2f4f6f;
+    text-decoration: underline;
+}

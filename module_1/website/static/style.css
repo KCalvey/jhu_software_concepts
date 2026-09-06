@@ -226,3 +226,18 @@ a:hover {
     font-size: 0.9rem;
     color: #8798a8;
 }
+.resume-subtitle {
+    color: #7a8fa3;
+    font-size: 0.95rem;
+    margin-top: -4px;
+    margin-bottom: 18px;
+}
+
+.resume-section ul {
+    line-height: 1.7;
+    padding-left: 22px;
+}
+
+.resume-section li {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume | Kari Leigh Calvey
+{% endblock %}
+
+{% block content %}
+
+<section class="page">
+
+    <h1>Resume</h1>
+
+    <div class="resume-section">
+
+        <h2>Professional Background</h2>
+
+        <p>
+            I am a Quality Systems Specialist with experience in quality,
+            data analysis, process improvement, workforce planning, and
+            cross-functional collaboration.
+        </p>
+
+        <p>
+            My academic background in mathematics and data science supports
+            my interest in using data, analytics, and structured problem-solving
+            to improve organizational decision-making.
+        </p>
+
+    </div>
+
+    <div class="resume-section">
+
+        <h2>Education</h2>
+
+        <h3>Johns Hopkins University</h3>
+        <p>Master of Science in Data Science</p>
+        <p>Currently Pursuing</p>
+
+        <h3>University of the Incarnate Word</h3>
+        <p>Bachelor of Science in Mathematics</p>
+        <p>Minor in Data Science</p>
+
+    </div>
+
+    <div class="resume-section">
+
+        <h2>Skills</h2>
+
+        <p>
+            Python | Data Analysis | Statistical Analysis |
+            Data Visualization | Process Improvement |
+            Root Cause Analysis | Quality Systems
+        </p>
+
+    </div>
+
+    <div class="resume-section">
+
+        <h2>Full Resume</h2>
+
+        <p>
+            View my complete resume for additional information about my
+            professional experience, education, skills, and accomplishments.
+        </p>
+
+        <a
+            class="resume-button"
+            href="{{ url_for('static', filename='files/Calvey_Resume.pdf') }}"
+            target="_blank"
+        >
+            View My Resume
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Kari Calvey{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-name">
+            Kari Leigh Calvey
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('views.home') }}"
+               class="{% if request.endpoint == 'views.home' %}active{% endif %}">
+                Home
+            </a>
+
+            <a href="{{ url_for('views.projects') }}"
+               class="{% if request.endpoint == 'views.projects' %}active{% endif %}">
+                Projects
+            </a>
+
+            <a href="{{ url_for('views.resume') }}"
+               class="{% if request.endpoint == 'views.resume' %}active{% endif %}">
+                Resume
+            </a>
+
+            <a href="{{ url_for('views.contact') }}"
+               class="{% if request.endpoint == 'views.contact' %}active{% endif %}">
+                Contact
+            </a>
+
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>

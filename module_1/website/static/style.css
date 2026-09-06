@@ -213,3 +213,16 @@ a:hover {
     color: #2f4f6f;
     text-decoration: underline;
 }
+.quote {
+    font-style: italic;
+    color: #6f8498;
+    margin-top: -5px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.quote span {
+    font-size: 0.9rem;
+    color: #8798a8;
+}

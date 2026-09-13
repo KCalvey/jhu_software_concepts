@@ -17,21 +17,26 @@ def build_url(page_number: int) -> str:
     return f"{BASE_URL}?page={page_number}"
 
 
-def open_chrome_page(url: str) -> None:
-    """Open a public GradCafe page in the user's normal Chrome browser."""
-    subprocess.run(
-        ["open", "-a", "Google Chrome", url],
-        check=True
-    )
-
-
-def capture_current_html() -> str:
+def capture_page_html(url: str, wait_seconds: float = 5.0) -> str:
     """
-    Capture the rendered HTML from Chrome's active tab.
+    Open a URL in a new Chrome tab, wait for it to load,
+    capture that tab's HTML, then close it.
     """
-    script = '''
+    script = f'''
     tell application "Google Chrome"
-        set pageHTML to execute active tab of front window javascript "document.documentElement.outerHTML"
+        activate
+
+        tell front window
+            set newTab to make new tab with properties {{URL:"{url}"}}
+            set active tab index to (count of tabs)
+        end tell
+
+        delay {wait_seconds}
+
+        set pageHTML to execute newTab javascript "document.documentElement.outerHTML"
+
+        close newTab
+
         return pageHTML
     end tell
     '''
@@ -46,20 +51,6 @@ def capture_current_html() -> str:
     return result.stdout
 
 
-def close_current_tab() -> None:
-    """Close Chrome's active tab after capture."""
-    script = '''
-    tell application "Google Chrome"
-        close active tab of front window
-    end tell
-    '''
-
-    subprocess.run(
-        ["osascript", "-e", script],
-        check=True
-    )
-
-
 def capture_page(page_number: int, wait_seconds: float = 5.0) -> Path:
     """
     Open a GradCafe results page, allow it to render,
@@ -69,18 +60,12 @@ def capture_page(page_number: int, wait_seconds: float = 5.0) -> Path:
 
     print(f"Opening page {page_number}: {url}")
 
-    open_chrome_page(url)
-
-    time.sleep(wait_seconds)
-
-    html = capture_current_html()
+    html = capture_page_html(url, wait_seconds)
 
     output_file = Path(f"page_{page_number}.html")
     output_file.write_text(html, encoding="utf-8")
 
     print(f"Saved {output_file}")
-
-    close_current_tab()
 
     return output_file
 

@@ -184,31 +184,59 @@ def _parse_page(html):
     return records
 
 def main():
-    test_url = build_results_url(1)
-    print(f"Testing URL: {test_url}")
+    all_records = load_data()
 
-    if not check_robots_txt(test_url):
-        print("robots.txt does not allow access to this URL.")
-        return
+    existing_urls = {
+        record["url"]
+        for record in all_records
+        if record.get("url")
+    }
 
-    print("robots.txt allows access to this URL.")
+    print(f"Starting with {len(all_records)} existing records.")
 
-    with open("page_1.html", "r", encoding="utf-8") as file:
-        html = file.read()
+    page_number = 1
 
-    records = _parse_page(html)
-    
-    save_data(records)
-    
+    while True:
+        test_url = build_results_url(page_number)
+        print(f"\nProcessing page {page_number}: {test_url}")
+
+        if not check_robots_txt(test_url):
+            print("robots.txt does not allow access to this URL.")
+            break
+
+        page_file = Path(f"page_{page_number}.html")
+
+        if not page_file.exists():
+            print(f"{page_file} not found. Stopping here.")
+            break
+
+        with open(page_file, "r", encoding="utf-8") as file:
+            html = file.read()
+
+        page_records = _parse_page(html)
+
+        new_records = [
+            record
+            for record in page_records
+            if record.get("url") not in existing_urls
+        ]
+
+        for record in new_records:
+            if record.get("url"):
+                existing_urls.add(record["url"])
+
+        all_records.extend(new_records)
+
+        save_data(all_records)
+
+        print(f"Records found on page: {len(page_records)}")
+        print(f"New records added: {len(new_records)}")
+        print(f"Total saved records: {len(all_records)}")
+
+        page_number += 1
+
     loaded_records = load_data()
-    
-    print(f"Records found: {len(records)}")
-    print(f"Records reloaded from JSON: {len(loaded_records)}")
-
-    if records:
-        print("\nFirst record:")
-        print(json.dumps(records[0], indent=2))
-
+    print(f"\nFinal records reloaded from JSON: {len(loaded_records)}")
 
 if __name__ == "__main__":
     main()

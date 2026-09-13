@@ -99,7 +99,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-        if args.start_page == 1:
+    if args.start_page == 1:
         current_url = START_URL
     else:
         previous_file = Path(f"page_{args.start_page - 1}.html")

@@ -47,6 +47,67 @@ def load_data(filename="applicant_data.json"):
     with open(filename, "r", encoding="utf-8") as file:
         return json.load(file)
 
+def _get_detail_value(soup, label):
+    """
+    Find a labeled value on an applicant detail page.
+    """
+    label_element = soup.find(
+        "dt",
+        string=lambda text: text and text.strip() == label
+    )
+
+    if not label_element:
+        return None
+
+    value_element = label_element.find_next_sibling("dd")
+
+    if not value_element:
+        return None
+
+    value = value_element.get_text(" ", strip=True)
+
+    if not value or value.lower() == "not provided":
+        return None
+
+    return value
+
+def _normalize_student_type(value):
+    """
+    Normalize applicant type to American or International.
+    """
+    if not value:
+        return None
+
+    lower_value = value.lower()
+
+    if "international" in lower_value:
+        return "International"
+
+    if "american" in lower_value or "usa" in lower_value:
+        return "American"
+
+    return value
+
+def _parse_detail_page(html):
+    """
+    Parse additional applicant information from a GradCafe result page.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    return {
+        "comments": _get_detail_value(soup, "Notes"),
+        "gpa": _get_detail_value(soup, "Undergrad GPA"),
+        "gre": _get_detail_value(soup, "GRE General"),
+        "gre_v": _get_detail_value(soup, "GRE Verbal"),
+        "gre_aw": _get_detail_value(soup, "Analytical Writing"),
+        "degree": _get_detail_value(soup, "Degree Type"),
+        "student_type": _normalize_student_type(
+            _get_detail_value(
+                soup,
+                "Degree's Country of Origin"
+            )
+        ),
+    }
 
 def _parse_page(html):
     """
@@ -80,6 +141,7 @@ def _parse_page(html):
 
         record = {
             "program": program_text,
+            "raw_program": program_text,
             "university": university,
             "comments": None,
             "date_added": date_added,
@@ -178,7 +240,19 @@ def _parse_page(html):
                 ):
                     # Do not assign unknown badge text automatically.
                     pass
+        # If a saved detail page exists, use it to enrich the record.
+        result_id = result_link["href"].rstrip("/").split("/")[-1]
+        detail_file = Path(f"result_{result_id}.html")
 
+        if detail_file.exists():
+            with open(detail_file, "r", encoding="utf-8") as file:
+                detail_html = file.read()
+
+            detail_data = _parse_detail_page(detail_html)
+
+            for key, value in detail_data.items():
+                if value is not None:
+                    record[key] = value
         records.append(record)
 
     return records

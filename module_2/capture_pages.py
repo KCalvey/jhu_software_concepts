@@ -6,15 +6,26 @@ import sys
 import time
 from pathlib import Path
 from typing import List, Tuple
-from urllib.parse import urlparse
+from urllib.parse import urljoin
+
+from bs4 import BeautifulSoup
 
 
-BASE_URL = "https://www.thegradcafe.com/survey/"
+BASE_URL = "https://www.thegradcafe.com/"
+START_URL = "https://www.thegradcafe.com/survey/"
 
 
-def build_url(page_number: int) -> str:
-    """Build the GradCafe URL for a results page."""
-    return f"{BASE_URL}?page={page_number}"
+def get_next_url(html: str):
+    """
+    Find the real GradCafe Next link, including its pagination cursor.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    for link in soup.find_all("a", href=True):
+        if link.get_text(" ", strip=True).lower() == "next":
+            return urljoin(BASE_URL, link["href"])
+
+    return None
 
 
 def capture_page_html(url: str, wait_seconds: float = 5.0) -> str:
@@ -50,14 +61,14 @@ def capture_page_html(url: str, wait_seconds: float = 5.0) -> str:
 
     return result.stdout
 
-
-def capture_page(page_number: int, wait_seconds: float = 5.0) -> Path:
+def capture_page(
+    page_number: int,
+    url: str,
+    wait_seconds: float = 5.0
+):
     """
-    Open a GradCafe results page, allow it to render,
-    capture the HTML, and save it locally.
+    Capture one GradCafe results page and save its HTML.
     """
-    url = build_url(page_number)
-
     print(f"Opening page {page_number}: {url}")
 
     html = capture_page_html(url, wait_seconds)
@@ -67,8 +78,7 @@ def capture_page(page_number: int, wait_seconds: float = 5.0) -> Path:
 
     print(f"Saved {output_file}")
 
-    return output_file
-
+    return output_file, html
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -89,12 +99,32 @@ def main() -> None:
 
     args = parser.parse_args()
 
+        if args.start_page == 1:
+        current_url = START_URL
+    else:
+        previous_file = Path(f"page_{args.start_page - 1}.html")
+
+        if not previous_file.exists():
+            print(f"{previous_file} is missing.")
+            sys.exit(1)
+
+        previous_html = previous_file.read_text(encoding="utf-8")
+        current_url = get_next_url(previous_html)
+
+        if not current_url:
+            print("Could not find the Next link in the previous page.")
+            sys.exit(1)
+
     for page_number in range(
         args.start_page,
         args.start_page + args.pages
     ):
-        capture_page(page_number)
+        if not current_url:
+            print("No Next page found. Stopping.")
+            break
 
+        _, html = capture_page(page_number, current_url)
+        current_url = get_next_url(html)
 
 if __name__ == "__main__":
     main()

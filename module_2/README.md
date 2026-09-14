@@ -30,7 +30,7 @@ The site's robots.txt was reviewed before scraping. Evidence is included in scre
 ### Data Cleaning
 The cleaning workflow removes remaining HTML markup, decodes HTML entities, normalizes whitespace, preserves the original program information, and provides standardized program and university fields.
 
-The assignment references instructor-provided local LLM hosting files. Those files were not available in this working copy at final submission, so deterministic Python cleaning was used rather than representing the output as LLM-generated.
+The instructor-provided local LLM hosting files are included in the llm_hosting directory. The submitted clean.py performs deterministic Python cleaning and standardization and saves the resulting dataset as llm_extend_applicant_data.json.
 
 ### Requirements
 Python 3.10 or later is required.

@@ -274,9 +274,9 @@ def main():
         test_url = build_results_url(page_number)
         print(f"\nProcessing page {page_number}: {test_url}")
 
-        if not check_robots_txt(test_url):
-            print("robots.txt does not allow access to this URL.")
-            break
+        #if not check_robots_txt(test_url):
+           # print("robots.txt does not allow access to this URL.")
+           # break
 
         page_file = Path(f"page_{page_number}.html")
 

@@ -96,11 +96,16 @@ def main() -> None:
         default=1,
         help="Number of pages to capture."
     )
-
+    parser.add_argument(
+        "--start-url",
+        type=str,
+        default=START_URL,
+        help="Starting GradCafe results URL."
+    )
     args = parser.parse_args()
 
     if args.start_page == 1:
-        current_url = START_URL
+        current_url = args.start_url
     else:
         previous_file = Path(f"page_{args.start_page - 1}.html")
 

@@ -1,2 +1,1 @@
-# Requirements will be added as development progresses
-beautifulsoup4
+beautifulsoup4>=4.12.0

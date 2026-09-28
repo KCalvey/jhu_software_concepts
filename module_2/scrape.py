@@ -1,4 +1,5 @@
 import json
+import argparse
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -258,6 +259,23 @@ def _parse_page(html):
     return records
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--start-page",
+        type=int,
+        default=1,
+        help="First saved GradCafe page to process."
+    )
+
+    parser.add_argument(
+        "--pages",
+        type=int,
+        default=None,
+        help="Number of saved GradCafe pages to process."
+    )
+
+    args = parser.parse_args()
+
     all_records = load_data()
 
     existing_urls = {
@@ -268,9 +286,12 @@ def main():
 
     print(f"Starting with {len(all_records)} existing records.")
 
-    page_number = 1
+    page_number = args.start_page
+    pages_processed = 0
 
     while True:
+        if args.pages is not None and pages_processed >= args.pages:
+            break
         test_url = build_results_url(page_number)
         print(f"\nProcessing page {page_number}: {test_url}")
 
@@ -308,6 +329,7 @@ def main():
         print(f"Total saved records: {len(all_records)}")
 
         page_number += 1
+        pages_processed += 1
 
     loaded_records = load_data()
     print(f"\nFinal records reloaded from JSON: {len(loaded_records)}")

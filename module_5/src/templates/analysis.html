@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grad School Cafe Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Grad School Cafe Data Analysis</h1>
+
+    <h2>Analysis</h2>
+<div class="update-analysis-section">
+    <form action="{{ url_for('update_analysis') }}" method="post">
+        <button type="submit" data-testid="update-analysis-btn">Update Analysis</button>
+    </form>
+
+    {% if status == "retrieving" %}
+        <p>New data is currently being retrieved. The analysis below shows the most recent data currently available in PostgreSQL.</p>
+    {% elif status == "updated" %}
+        <p>Analysis updated using the most current data available in PostgreSQL.</p>
+    {% elif scrape_running %}
+        <p>New data is currently being retrieved. You can update the analysis again once the Pull Data process finishes.</p>
+    {% endif %}
+</div>
+
+<div class="pull-data-section">
+    <h3>Update Data</h3>
+
+    <p>
+        Pull Data checks Grad Café for newly submitted application results
+        and adds new usable records to the PostgreSQL database.
+        Depending on the amount of new data available, this may take some time.
+    </p>
+
+    <form action="{{ url_for('pull_data') }}" method="post">
+        <button type="submit" data-testid="pull-data-btn">Pull Data</button>
+    </form>
+</div>
+
+    <p>
+        <strong>Fall 2026 applicant count:</strong>
+        Answer: {{ fall_2026_count }}
+    </p>
+
+    <p>
+        <strong>Average GPA of American Fall 2026 applicants:</strong>
+        Answer:{{ "%.2f"|format(avg_gpa_american) }}
+    </p>
+        <p>
+        <strong>Percent international:</strong>
+        Answer: {{ "%.2f"|format(percent_international) }}%
+    </p>
+
+    <p>
+        <strong>Average GPA:</strong>
+        Answer: {{ "%.2f"|format(avg_gpa) }}
+    </p>
+
+    <p>
+        <strong>Average GRE Quantitative:</strong>
+        Answer: {{ "%.2f"|format(avg_gre) }}
+    </p>
+
+    <p>
+        <strong>Average GRE Verbal:</strong>
+        Answer: {{ "%.2f"|format(avg_gre_v) }}
+    </p>
+
+    <p>
+        <strong>Average GRE Analytical Writing:</strong>
+        Answer: {{ "%.2f"|format(avg_gre_aw) }}
+    </p>
+
+    <p>
+        <strong>Fall 2025 acceptance percentage:</strong>
+        Answer: {{ "%.2f"|format(fall_2025_acceptance_percent) }}%
+    </p>
+
+    <p>
+        <strong>Average GPA of accepted Fall 2026 applicants:</strong>
+        Answer: {{ "%.2f"|format(avg_gpa_accepted_fall_2026) }}
+    </p>
+
+    <p>
+        <strong>How many applicants applied to Johns Hopkins University for a master's degree in Computer Science?</strong>
+        Answer: {{ jhu_masters_count }}
+    </p>
+
+    <h3>Comparison of Original and LLM-Generated Fields</h3>
+
+    <p>
+        <strong>
+            Fall 2026 accepted PhD Computer Science applicants at Georgetown, MIT,
+            Stanford, or Carnegie Mellon using original fields:
+        </strong>
+        Answer: {{ original_field_count }}
+    </p>
+
+    <p>
+        <strong>
+            Same analysis using LLM-generated university and program fields:
+        </strong>
+        Answer:{{ llm_field_count }}
+    </p>
+
+    <p>
+        <strong>Difference between the two counts:</strong>
+        Answer: {{ "%+d"|format(difference) }}
+    </p>
+
+    <h3>Top 5 universities by application count</h3>
+    <strong>Answer:</strong>
+    <ul>
+        {% for university, count in top_universities %}
+            <li>{{ university }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        <strong>Average GPA of Johns Hopkins University applicants:</strong>
+        Answer: {{ "%.2f"|format(jhu_avg_gpa) }}
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+.pytest_cache/
+.coverage
+htmlcov/
+fall23_pages/
+fall24_pages/
+decision_pages/
+page_*.html
+applicant_data.json
+applicant_data_backup.json
+applicant_data_final_backup.json
+llm_extend_applicant_data.json

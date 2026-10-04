@@ -1,0 +1,146 @@
+************* Module clean
+src/clean.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/clean.py:20:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/clean.py:43:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/clean.py:48:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/clean.py:53:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module models
+src/models.py:46:0: C0304: Final newline missing (missing-final-newline)
+src/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/models.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+src/models.py:9:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+src/models.py:12:0: C0115: Missing class docstring (missing-class-docstring)
+src/models.py:12:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module orm_queries
+src/orm_queries.py:78:0: C0301: Line too long (111/100) (line-too-long)
+src/orm_queries.py:110:0: C0303: Trailing whitespace (trailing-whitespace)
+src/orm_queries.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/orm_queries.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/orm_queries.py:6:18: E1102: func.count is not callable (not-callable)
+src/orm_queries.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/orm_queries.py:27:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/orm_queries.py:28:24: E1102: func.count is not callable (not-callable)
+src/orm_queries.py:32:27: E1102: func.count is not callable (not-callable)
+src/orm_queries.py:46:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/orm_queries.py:47:18: E1102: func.count is not callable (not-callable)
+src/orm_queries.py:69:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/orm_queries.py:70:18: E1102: func.count is not callable (not-callable)
+src/orm_queries.py:92:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/orm_queries.py:101:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module capture_pages
+src/capture_pages.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/capture_pages.py:83:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/capture_pages.py:6:0: W0611: Unused import time (unused-import)
+src/capture_pages.py:8:0: W0611: Unused List imported from typing (unused-import)
+src/capture_pages.py:8:0: W0611: Unused Tuple imported from typing (unused-import)
+************* Module merge_saved_pages
+src/merge_saved_pages.py:65:0: C0303: Trailing whitespace (trailing-whitespace)
+src/merge_saved_pages.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/merge_saved_pages.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/merge_saved_pages.py:56:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/merge_saved_pages.py:1:0: W0611: Unused import json (unused-import)
+************* Module query_data
+src/query_data.py:283:0: C0304: Final newline missing (missing-final-newline)
+src/query_data.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/query_data.py:5:0: W0404: Reimport 'psycopg' (imported line 3) (reimported)
+src/query_data.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:27:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:53:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:78:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:92:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:114:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:128:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:145:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:168:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:194:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:213:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:226:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:253:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/query_data.py:274:11: W0718: Catching too general exception Exception (broad-exception-caught)
+src/query_data.py:259:13: E1101: Class 'value' has no 'cursor' member (no-member)
+src/query_data.py:279:12: E1101: Class 'value' has no 'close' member (no-member)
+************* Module app
+src/app.py:128:0: C0301: Line too long (102/100) (line-too-long)
+src/app.py:147:0: C0301: Line too long (103/100) (line-too-long)
+src/app.py:148:0: C0301: Line too long (119/100) (line-too-long)
+src/app.py:150:0: C0301: Line too long (101/100) (line-too-long)
+src/app.py:151:0: C0301: Line too long (108/100) (line-too-long)
+src/app.py:262:0: C0304: Final newline missing (missing-final-newline)
+src/app.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/app.py:12:0: C0103: Constant name "scrape_process" doesn't conform to UPPER_CASE naming style (invalid-name)
+src/app.py:20:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/app.py:20:0: R0914: Too many local variables (20/15) (too-many-locals)
+src/app.py:23:19: E1102: func.count is not callable (not-callable)
+src/app.py:40:18: E1102: func.count is not callable (not-callable)
+src/app.py:44:30: E1102: func.count is not callable (not-callable)
+src/app.py:72:19: E1102: func.count is not callable (not-callable)
+src/app.py:78:19: E1102: func.count is not callable (not-callable)
+src/app.py:103:19: E1102: func.count is not callable (not-callable)
+src/app.py:118:19: E1102: func.count is not callable (not-callable)
+src/app.py:138:19: E1102: func.count is not callable (not-callable)
+src/app.py:162:16: E1102: func.count is not callable (not-callable)
+src/app.py:171:22: E1102: func.count is not callable (not-callable)
+src/app.py:205:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/app.py:212:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/app.py:213:4: W0603: Using the global statement (global-statement)
+src/app.py:257:21: R1732: Consider using 'with' for resource-allocating operations (consider-using-with)
+src/app.py:3:0: C0411: standard import "subprocess" should be placed before third party imports "flask.Flask", "sqlalchemy.select" (wrong-import-order)
+src/app.py:4:0: C0411: standard import "sys" should be placed before third party imports "flask.Flask", "sqlalchemy.select" (wrong-import-order)
+src/app.py:5:0: C0411: standard import "pathlib.Path" should be placed before third party imports "flask.Flask", "sqlalchemy.select" (wrong-import-order)
+src/app.py:6:0: C0411: standard import "shutil" should be placed before third party imports "flask.Flask", "sqlalchemy.select" (wrong-import-order)
+src/app.py:1:0: W0611: Unused redirect imported from flask (unused-import)
+src/app.py:1:0: W0611: Unused url_for imported from flask (unused-import)
+src/app.py:6:0: W0611: Unused import shutil (unused-import)
+************* Module scrape
+src/scrape.py:1:0: R0801: Similar lines in 2 files
+==app:[140:154]
+==orm_queries:[70:85]
+                and_(
+                    func.lower(Applicant.term) == "fall 2026",
+                    func.lower(Applicant.status).like("%accept%"),
+                    func.lower(Applicant.degree) == "phd",
+                    func.lower(Applicant.llm_generated_program).like("%computer science%"),
+                    or_(
+                        func.lower(Applicant.llm_generated_university).like("%georgetown university%"),
+                        func.lower(Applicant.llm_generated_university).like("%massachusetts institute of technology%"),
+                        func.lower(Applicant.llm_generated_university).like("%mit%"),
+                        func.lower(Applicant.llm_generated_university).like("%stanford university%"),
+                        func.lower(Applicant.llm_generated_university).like("%carnegie mellon university%"),
+                    ),
+                )
+            ) (duplicate-code)
+src/scrape.py:1:0: R0801: Similar lines in 2 files
+==app:[120:134]
+==orm_queries:[47:62]
+        and_(
+        func.lower(Applicant.term) == "fall 2026",
+        func.lower(Applicant.status).like("%accept%"),
+        func.lower(Applicant.degree) == "phd",
+        func.lower(Applicant.program).like("%computer science%"),
+        or_(
+            func.lower(Applicant.program).like("%georgetown university%"),
+            func.lower(Applicant.program).like("%massachusetts institute of technology%"),
+            func.lower(Applicant.program).like("%mit%"),
+            func.lower(Applicant.program).like("%stanford university%"),
+            func.lower(Applicant.program).like("%carnegie mellon university%"),
+        ),
+    )
+)
+ (duplicate-code)
+src/scrape.py:1:0: R0801: Similar lines in 2 files
+==merge_saved_pages:[33:41]
+==scrape:[297:306]
+            if record.get("url") not in existing_urls
+        ]
+
+        for record in new_records:
+            if record.get("url"):
+                existing_urls.add(record["url"])
+
+        all_records.extend(new_records)
+ (duplicate-code)
+
+------------------------------------------------------------------
+Your code has been rated at 7.05/10 (previous run: 7.05/10, +0.00)
+

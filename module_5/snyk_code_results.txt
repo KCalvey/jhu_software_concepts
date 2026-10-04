@@ -1,0 +1,44 @@
+
+Testing /Users/karicalvey/jhu_software_concepts/module_5 ...
+
+Open Issues
+
+ ✗ [LOW] Path Traversal
+   Finding ID: 584dcfdf-8692-424f-be04-eaa510fd5d4b
+   Path: llm_hosting/app.py, line 293
+   Info: Unsanitized input from a command line argument flows into open, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+ ✗ [LOW] Path Traversal
+   Finding ID: d3831377-fa94-4eb1-83b3-2414e34fb2d9
+   Path: llm_hosting/app.py, line 300
+   Info: Unsanitized input from a command line argument flows into open, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write arbitrary files.
+
+ ✗ [LOW] Path Traversal
+   Finding ID: 9209c586-0578-44da-bd0a-c03cfa814211
+   Path: llm_hosting/app.py, line 311
+   Info: Unsanitized input from a command line argument flows into json.dump, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to write arbitrary files.
+
+ ✗ [LOW] Path Traversal
+   Finding ID: dc504f47-c71f-47cb-952c-697a750841c5
+   Path: src/capture_pages.py, line 111
+   Info: Unsanitized input from a command line argument flows into pathlib.Path, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.
+
+
+
+╭──────────────────────────────────────────────────────────────────────────╮
+│ Test Summary                                                             │
+│                                                                          │
+│   Organization:      kcalvey                                             │
+│   Test type:         Static code analysis                                │
+│   Project path:      /Users/karicalvey/jhu_software_concepts/module_5    │
+│                                                                          │
+│   Total issues:   4                                                      │
+│   Ignored issues: 0 [ 0 HIGH  0 MEDIUM  0 LOW ]                          │
+│   Open issues:    4 [ 0 HIGH  0 MEDIUM  4 LOW ]                          │
+╰──────────────────────────────────────────────────────────────────────────╯
+    
+💡 Tip
+
+   To view ignored issues, use the --include-ignores option.
+                                                            
+

@@ -1,0 +1,43 @@
+
+Testing /Users/karicalvey/jhu_software_concepts/module_5...
+
+Tested 52 dependencies for known issues, found 8 issues, 20 vulnerable paths.
+
+
+Issues to fix by upgrading dependencies:
+
+  Pin requests@2.32.5 to requests@2.33.0 to fix
+  ✗ Insecure Temporary File [Medium Severity][https://security.snyk.io/vuln/SNYK-PYTHON-REQUESTS-15763443] in requests@2.32.5
+    introduced by sphinx@7.4.7 > requests@2.32.5 and 2 other path(s)
+
+  Pin soupsieve@2.8.4 to soupsieve@2.9 to fix
+  ✗ Regular Expression Denial of Service (ReDoS) (new) [Medium Severity][https://security.snyk.io/vuln/SNYK-PYTHON-SOUPSIEVE-19963953] in soupsieve@2.8.4
+    introduced by beautifulsoup4@4.15.0 > soupsieve@2.8.4
+  ✗ Regular Expression Denial of Service (ReDoS) (new) [Medium Severity][https://security.snyk.io/vuln/SNYK-PYTHON-SOUPSIEVE-19963967] in soupsieve@2.8.4
+    introduced by beautifulsoup4@4.15.0 > soupsieve@2.8.4
+
+  Pin urllib3@2.6.3 to urllib3@2.8.0 to fix
+  ✗ Infinite loop (new) [Medium Severity][https://security.snyk.io/vuln/SNYK-PYTHON-URLLIB3-20302845] in urllib3@2.6.3
+    introduced by sphinx@7.4.7 > requests@2.32.5 > urllib3@2.6.3 and 2 other path(s)
+  ✗ Insertion of Sensitive Information Into Sent Data [High Severity][https://security.snyk.io/vuln/SNYK-PYTHON-URLLIB3-16642024] in urllib3@2.6.3
+    introduced by sphinx@7.4.7 > requests@2.32.5 > urllib3@2.6.3 and 2 other path(s)
+  ✗ Decompression Bomb [High Severity][https://security.snyk.io/vuln/SNYK-PYTHON-URLLIB3-16642059] in urllib3@2.6.3
+    introduced by sphinx@7.4.7 > requests@2.32.5 > urllib3@2.6.3 and 2 other path(s)
+  ✗ Improper Certificate Validation (new) [High Severity][https://security.snyk.io/vuln/SNYK-PYTHON-URLLIB3-20302844] in urllib3@2.6.3
+    introduced by sphinx@7.4.7 > requests@2.32.5 > urllib3@2.6.3 and 2 other path(s)
+  ✗ Allocation of Resources Without Limits or Throttling (new) [High Severity][https://security.snyk.io/vuln/SNYK-PYTHON-URLLIB3-20302846] in urllib3@2.6.3
+    introduced by sphinx@7.4.7 > requests@2.32.5 > urllib3@2.6.3 and 2 other path(s)
+
+
+
+Organization:      kcalvey
+Package manager:   pip
+Target file:       requirements.txt
+Project name:      module_5
+Open source:       no
+Project path:      /Users/karicalvey/jhu_software_concepts/module_5
+Licenses:          enabled
+
+Tip: Detected multiple supported manifests (1), use --all-projects to scan all of them at once.
+
+

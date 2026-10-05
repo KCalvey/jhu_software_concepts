@@ -97,6 +97,8 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
 
         fall_2025_acceptance_percent = (
             100.0 * accepted_fall_2025 / total_fall_2025
+            if total_fall_2025
+            else 0.0
         )
 
         avg_gpa_accepted_fall_2026 = session.scalar(

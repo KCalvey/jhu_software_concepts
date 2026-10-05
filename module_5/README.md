@@ -128,3 +128,98 @@ Install the required dependencies:
 
 ```bash
 pip install -r module_4/requirements.txt
+
+# Module 5 - Software Assurance and Secure SQL
+
+## Overview
+
+Module 5 adds software assurance and security controls to the GradCafe analytics application. The project includes SQL injection defenses, query LIMIT enforcement, environment-based database configuration, least-privilege database access, dependency analysis, Pylint validation, Snyk security scanning, Pytest testing, and GitHub Actions continuous integration.
+
+## Fresh Installation
+
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+Install the project dependencies using pip:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Alternatively, install the dependencies using uv:
+
+```bash
+uv venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+```
+
+## Environment Variables
+
+Database credentials are loaded from environment variables rather than hard-coded in the source code. Copy `.env.example` and provide the appropriate local database values for `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD`. The `.env` file containing actual credentials is excluded from version control.
+
+## Pylint
+
+Run Pylint on the Module 5 source files with:
+
+```bash
+pylint src/*.py --fail-under=10
+```
+
+All submitted source files are required to achieve a Pylint score of 10.00/10.
+
+## Testing
+
+Run the automated test suite with:
+
+```bash
+pytest
+```
+
+## SQL Injection Defenses
+
+SQL statements use psycopg SQL composition and parameterized values rather than constructing SQL from user input with string concatenation, f-strings, or `.format()`. SQL statement construction is kept separate from execution, and user-supplied values are passed as parameters to `cursor.execute()`.
+
+## Query LIMIT Enforcement
+
+Database queries include LIMIT clauses to restrict returned data. Dynamic limits are validated with `safe_limit()`, which clamps requested values between 1 and `MAX_LIMIT` (100).
+
+## Least-Privilege Database Access
+
+The `module5_app` PostgreSQL role is configured as a non-superuser without database-creation or role-creation privileges. It receives only the database, schema, and table permissions required by the application. The SQL used to configure the role is included in `least_privilege.sql`.
+
+## Dependency Analysis
+
+The project dependency graph is generated with pydeps and Graphviz:
+
+```bash
+pydeps src --noshow -o dependency.svg
+```
+
+The generated graph is included as `dependency.svg`.
+
+## Snyk Security Analysis
+
+Dependency security scanning is performed with:
+
+```bash
+snyk test
+```
+
+The scan output is documented in `snyk_results.txt`, and screenshot evidence is included as `snyk-analysis.png`.
+
+Snyk Code static application security testing was also performed for extra credit with:
+
+```bash
+snyk code test
+```
+
+The SAST results are included in `snyk_code_results.txt`.
+
+## GitHub Actions CI
+
+The GitHub Actions workflow automatically installs dependencies, initializes the PostgreSQL test database, runs Pylint with the required `--fail-under=10` threshold, executes Pytest, generates and validates `dependency.svg`, and performs a Snyk dependency scan.

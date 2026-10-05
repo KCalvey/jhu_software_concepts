@@ -7,7 +7,6 @@ from datetime import datetime
 
 import psycopg
 from psycopg import sql
-from psycopg import Error
 
 
 DATA_FILE = "llm_extend_applicant_data.json"
@@ -169,7 +168,7 @@ def load_data():
         print(f"Successfully processed {len(applicants)} records.")
         print(f"New records inserted: {inserted_count}")
 
-    except Exception as error:
+    except (psycopg.Error, OSError, ValueError) as error:
         if connection:
             connection.rollback()
 

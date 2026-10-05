@@ -224,7 +224,7 @@ def test_main_handles_exception(monkeypatch, capsys):
     )
 
     def fake_question_1(cursor):
-        raise Exception("test error")
+        raise ValueError("test error")
 
     monkeypatch.setattr(
         query_data,

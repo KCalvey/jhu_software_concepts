@@ -210,7 +210,7 @@ def test_load_data_error(tmp_path, monkeypatch, capsys):
 
     class FakeCursor:
         def __enter__(self):
-            raise Exception("database test error")
+            raise ValueError("database test error")
 
         def __exit__(self, exc_type, exc_val, exc_tb):
             pass

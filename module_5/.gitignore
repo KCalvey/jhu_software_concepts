@@ -14,3 +14,4 @@ applicant_data.json
 applicant_data_backup.json
 applicant_data_final_backup.json
 llm_extend_applicant_data.json
+*.egg-info/

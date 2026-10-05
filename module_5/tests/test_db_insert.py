@@ -45,14 +45,15 @@ def test_create_table_uses_required_schema():
     cursor = FakeCursor()
 
     load_data.create_table(cursor)
+    sql_text = cursor.sql.as_string(None)
 
-    assert "CREATE TABLE IF NOT EXISTS applicants" in cursor.sql
-    assert "p_id INTEGER PRIMARY KEY" in cursor.sql
-    assert "program TEXT" in cursor.sql
-    assert "url TEXT" in cursor.sql
-    assert "status TEXT" in cursor.sql
-    assert "term TEXT" in cursor.sql
-    assert "gpa FLOAT" in cursor.sql
+    assert "CREATE TABLE IF NOT EXISTS applicants" in sql_text
+    assert "p_id INTEGER PRIMARY KEY" in sql_text
+    assert "program TEXT" in sql_text
+    assert "url TEXT" in sql_text
+    assert "status TEXT" in sql_text
+    assert "term TEXT" in sql_text
+    assert "gpa FLOAT" in sql_text
 
     @pytest.mark.db
     def test_query_returns_expected_dictionary():
@@ -96,6 +97,12 @@ def test_clean_date():
 
 @pytest.mark.db
 def test_get_connection(monkeypatch):
+    monkeypatch.setenv("DB_NAME", "module3_db")
+    monkeypatch.setenv("DB_USER", "karicalvey")
+    monkeypatch.setenv("DB_PASSWORD", "test_password")
+    monkeypatch.setenv("DB_HOST", "localhost")
+    monkeypatch.setenv("DB_PORT", "5432")
+
     called = {}
 
     def fake_connect(**kwargs):

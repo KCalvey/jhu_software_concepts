@@ -388,7 +388,7 @@ def main():
             question_10(cursor)
             question_11(cursor)
 
-    except (psycopg.Error, OSError, ValueError) as error:
+    except Exception as error:
         print(f"Error running queries: {error}")
 
     finally:

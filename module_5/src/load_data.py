@@ -169,7 +169,7 @@ def load_data():
         print(f"Successfully processed {len(applicants)} records.")
         print(f"New records inserted: {inserted_count}")
 
-    except (Error, OSError, ValueError) as error:
+    except Exception as error:
         if connection:
             connection.rollback()
 

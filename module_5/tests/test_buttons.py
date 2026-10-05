@@ -21,7 +21,7 @@ def client():
 
 @pytest.mark.buttons
 def test_update_analysis_not_busy(client, monkeypatch):
-    monkeypatch.setattr(app_module, "scrape_process", None)
+    monkeypatch.setattr(app_module, "SCRAPE_PROCESS", None)
 
     response = client.post("/update-analysis")
 
@@ -35,7 +35,7 @@ def test_update_analysis_busy(client, monkeypatch):
         def poll(self):
             return None
 
-    monkeypatch.setattr(app_module, "scrape_process", FakeProcess())
+    monkeypatch.setattr(app_module, "SCRAPE_PROCESS", FakeProcess())
 
     response = client.post("/update-analysis")
 
@@ -49,7 +49,7 @@ def test_pull_data_busy(client, monkeypatch):
         def poll(self):
             return None
 
-    monkeypatch.setattr(app_module, "scrape_process", FakeProcess())
+    monkeypatch.setattr(app_module, "SCRAPE_PROCESS", FakeProcess())
 
     response = client.post("/pull-data")
 
@@ -66,11 +66,11 @@ def test_pull_data_starts_process(client, monkeypatch):
     def fake_popen(command):
         return FakeProcess()
 
-    monkeypatch.setattr(app_module, "scrape_process", None)
+    monkeypatch.setattr(app_module, "SCRAPE_PROCESS", None)
     monkeypatch.setattr(app_module.subprocess, "Popen", fake_popen)
 
     response = client.post("/pull-data")
 
     assert response.status_code == 202
     assert response.get_json() == {"ok": True}
-    assert app_module.scrape_process is not None
+    assert app_module.SCRAPE_PROCESS is not None

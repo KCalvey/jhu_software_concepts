@@ -18,7 +18,7 @@ class FakeCursor:
         self.fetchone_index = 0
         self.executed = []
 
-    def execute(self, query):
+    def execute(self, query, params=None):
         self.executed.append(query)
 
     def fetchone(self):
@@ -275,6 +275,11 @@ def test_main_success(monkeypatch):
 
 @pytest.mark.db
 def test_get_connection(monkeypatch):
+    monkeypatch.setenv("DB_NAME", "module3_db")
+    monkeypatch.setenv("DB_USER", "karicalvey")
+    monkeypatch.setenv("DB_PASSWORD", "test_password")
+    monkeypatch.setenv("DB_HOST", "localhost")
+    monkeypatch.setenv("DB_PORT", "5432")
     class FakeConnection:
         pass
 

@@ -36,7 +36,7 @@ def test_update_analysis_busy(client, monkeypatch):
         def poll(self):
             return None
 
-    monkeypatch.setattr(app_module, "scrape_process", FakeProcess())
+    monkeypatch.setattr(app_module, "SCRAPE_PROCESS", FakeProcess())
 
     response = client.post("/update-analysis")
 

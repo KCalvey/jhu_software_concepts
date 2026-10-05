@@ -29,6 +29,7 @@ jobs:
       DB_NAME: module3_db
       DB_USER: karicalvey
       DB_PASSWORD: test_password
+      DATABASE_URL: postgresql+psycopg://karicalvey:test_password@localhost:5432/module3_db
 
     steps:
       - name: Check out repository

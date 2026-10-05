@@ -40,7 +40,7 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
                 )
             )
             .limit(1)
-        )
+        ) or 0.0
         percent_international = session.scalar(
             select(
                 100.0
@@ -62,19 +62,19 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
 
         avg_gpa = session.scalar(
             select(func.avg(Applicant.gpa)).limit(1)
-        )
+        ) or 0.0
 
         avg_gre = session.scalar(
             select(func.avg(Applicant.gre)).limit(1)
-        )
+        ) or 0.0
 
         avg_gre_v = session.scalar(
             select(func.avg(Applicant.gre_v)).limit(1)
-        )
+        ) or 0.0
 
         avg_gre_aw = session.scalar(
             select(func.avg(Applicant.gre_aw)).limit(1)
-        )
+        ) or 0.0
 
         total_fall_2025 = session.scalar(
             select(func.count())
@@ -93,7 +93,7 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
                 )
             )
             .limit(1)
-        )
+        ) or 0.0
 
         fall_2025_acceptance_percent = (
             100.0 * accepted_fall_2025 / total_fall_2025
@@ -110,7 +110,7 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
                 )
             )
             .limit(1)
-        )
+        ) or 0.0
 
         jhu_masters_count = session.scalar(
             select(func.count())
@@ -209,7 +209,7 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
                 func.lower(Applicant.llm_generated_university).like("%johns hopkins%")
             )
             .limit(1)
-        )
+        ) or 0.0
         scrape_running = SCRAPE_PROCESS is not None and SCRAPE_PROCESS.poll() is None
         status = request.args.get("status")
 

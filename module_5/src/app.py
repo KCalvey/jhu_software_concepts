@@ -58,7 +58,7 @@ def analysis():  # pylint: disable=too-many-locals,not-callable
                 )
             )
             .limit(1)
-        )
+        ) or 0.0
 
         avg_gpa = session.scalar(
             select(func.avg(Applicant.gpa)).limit(1)
